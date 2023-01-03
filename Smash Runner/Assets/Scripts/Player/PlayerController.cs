@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         MoveForward();
+        playerPos= transform.position;
 
         if (Input.touchCount > 0)
             ControlCharacter();
@@ -29,20 +30,20 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
-        playerPos= transform.position;
     }
     private void ControlCharacter()
     {
         touch = Input.GetTouch(0);
         if (touch.phase == TouchPhase.Moved)
         {
-            transform.position = new Vector3(transform.position.x + touch.deltaPosition.x * speedModifier
-                                           , transform.position.y, transform.position.z);
+            transform.position = new Vector3(transform.position.x + touch.deltaPosition.x * 
+                                            speedModifier,
+                                            transform.position.y, transform.position.z);
         }
     }
     private void MoveForward()
     {
-        playerRb.velocity = Vector3.forward * 15f;
+        transform.position += new Vector3(0,0,15f*Time.deltaTime);
     }
     public Vector3 GetPlayerPosition()
     {
