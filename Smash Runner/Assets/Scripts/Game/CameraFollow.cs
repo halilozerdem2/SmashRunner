@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerFollower : MonoBehaviour
+public class CameraFollow : MonoBehaviour
 {
     PlayerController player;
 
@@ -10,7 +10,7 @@ public class PlayerFollower : MonoBehaviour
     {
         player=FindObjectOfType<PlayerController>();
     }
-    private void FixedUpdate()
+    private void LateUpdate()
     {
         this.transform.position = player.GetPlayerPosition() + new Vector3(0,7,-10);
         

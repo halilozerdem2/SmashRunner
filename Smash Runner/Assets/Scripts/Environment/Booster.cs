@@ -31,8 +31,8 @@ public class Booster : MonoBehaviour
     {
         if (triggered)
         {
+            //Debug.Log("a");
             transform.SetParent(player.gameObject.transform);
-            transform.localPosition = Vector3.zero;
             triggered = false;
         }
         if (following)

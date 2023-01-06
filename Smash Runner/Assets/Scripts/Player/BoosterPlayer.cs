@@ -18,7 +18,7 @@ public class BoosterPlayer : MonoBehaviour
     {
         if(booster.triggered)
         {
-            playerCollider.size = new Vector3(playerCollider.size.x, playerCollider.size.y, playerCollider.size.z+0.7f) ;
+            playerCollider.size = new Vector3(playerCollider.size.x, playerCollider.size.y+0.7f, playerCollider.size.z+0.7f) ;
         }
         
     }
