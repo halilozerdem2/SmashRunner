@@ -10,8 +10,10 @@ public class Booster : MonoBehaviour
 {
     private Vector3 boosterPosition;
     private PlayerController player;
-    private GameObject lastFollower;
+    public GameObject lastTarget;
     public BoxCollider boosterCollider;
+
+    private GameManager gameManager;
 
     public bool triggered=false;
     private bool following = false;
@@ -20,19 +22,25 @@ public class Booster : MonoBehaviour
     {
         player = FindObjectOfType<PlayerController>();
         boosterCollider = GetComponent<BoxCollider>();
+        gameManager = FindObjectOfType<GameManager>();
     }
     private void Start()
     {
         boosterPosition = this.transform.position;
-        lastFollower = player.gameObject;
+        lastTarget = player.gameObject;
+    }
+
+    private void Update()
+    {
+        lastTarget = gameManager.lastFollower;
     }
 
     private void LateUpdate()
     {
         if (triggered)
         {
-            //Debug.Log("a");
-            transform.SetParent(player.gameObject.transform);
+            transform.SetParent(lastTarget.transform);
+            Debug.Log(lastTarget.name);
             triggered = false;
         }
         if (following)

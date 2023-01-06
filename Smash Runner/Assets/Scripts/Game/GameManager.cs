@@ -13,13 +13,12 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        followerList = Chain.Singleton_Game_Obje_Zinciri_Dondur();
+        followerList = new List<GameObject>();
         collisionDetecter = FindObjectOfType<PlayerCollisionDetecter>();
     }
     private void Start()
     {
         followerList.Add(collisionDetecter.gameObject);
-        //lastFollower = collisionDetecter.gameObject;
     }
     private void Update()
     {
@@ -34,7 +33,5 @@ public class GameManager : MonoBehaviour
             Debug.Log(followerList.Count);
         }
         lastFollower = followerList[followerList.Count-1];
-
-        //collisionDetecter.isPlayerTriggered = false;
     }
 }
