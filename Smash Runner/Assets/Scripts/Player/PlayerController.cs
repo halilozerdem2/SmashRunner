@@ -1,36 +1,56 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     private Touch touch;
-    private float speedModifier;
     private Rigidbody playerRb;
+    public bool isGrounded;
+    private float speedModifier;
+    private float threshold = 0.5f;
+    public bool isMovingInZAxis;
     private Vector3 playerPos;
 
     private void Awake()
     {
-        playerRb= GetComponent<Rigidbody>();    
+        playerRb=GetComponent<Rigidbody>();    
     }
-
     private void Start()
     {
         speedModifier= 0.01f;
     }
     private void FixedUpdate()
     {
-        MoveForward();
         playerPos= transform.position;
-
-        if (Input.touchCount > 0)
-            ControlCharacter();
         
+        MoveForward();
+        
+        if (Input.touchCount > 0)
+        {
+            ControlCharacter();
+
+        }
+        SetBoolMovingZAxis();
     }
-    private void Update()
+
+    private void SetBoolMovingZAxis()
     {
+        float zAxisValue = playerRb.velocity.z;
+        
+        if(Mathf.Abs(playerRb.velocity.z)>threshold)
+        {
+            isMovingInZAxis= true;
+        }
+        else
+        {
+            isMovingInZAxis = false;
+        }
     }
+
     private void ControlCharacter()
     {
         touch = Input.GetTouch(0);

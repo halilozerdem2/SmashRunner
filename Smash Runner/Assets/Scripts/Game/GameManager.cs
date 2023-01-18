@@ -9,8 +9,6 @@ public class GameManager : MonoBehaviour
 
     public List<GameObject> followerList; 
 
-    private bool oneTime = false;
-
     private void Awake()
     {
         followerList = new List<GameObject>();
@@ -19,6 +17,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         followerList.Add(collisionDetecter.gameObject);
+        lastFollower =collisionDetecter.gameObject;
     }
     private void Update()
     {
@@ -30,7 +29,6 @@ public class GameManager : MonoBehaviour
         if (collisionDetecter.isPlayerTriggered)
         {
             followerList.Add(collisionDetecter.triggeredBooster);
-            Debug.Log(followerList.Count);
         }
         lastFollower = followerList[followerList.Count-1];
     }

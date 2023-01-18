@@ -7,7 +7,12 @@ public class PlayerCollisionDetecter : MonoBehaviour
     public bool isHitWall;
     public bool isPlayerTriggered=false;
     public GameObject triggeredBooster;
+    PlayerController controller;
 
+    private void Awake()
+    {
+        controller= GetComponent<PlayerController>();
+    }
     private void LateUpdate()
     {
         if (isPlayerTriggered)
@@ -22,5 +27,25 @@ public class PlayerCollisionDetecter : MonoBehaviour
             isPlayerTriggered= true;
             triggeredBooster = other.gameObject;
         }
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Ground"))
+        {
+            controller.isGrounded = true;
+
+        }
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Ground"))
+        {
+            Invoke("SetGroundedFalse", 0.5f);
+        }
+    }
+
+    void SetGroundedFalse()
+    {
+        controller.isGrounded = false;
     }
 }

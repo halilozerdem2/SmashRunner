@@ -27,24 +27,28 @@ public class Booster : MonoBehaviour
     private void Start()
     {
         boosterPosition = this.transform.position;
-        lastTarget = player.gameObject;
     }
-
     private void Update()
     {
         lastTarget = gameManager.lastFollower;
     }
-
     private void LateUpdate()
     {
         if (triggered)
         {
             transform.SetParent(lastTarget.transform);
-            Debug.Log(lastTarget.name);
             triggered = false;
         }
-        if (following)
+        if (following && !player.isMovingInZAxis)
+        {
             transform.localPosition = Vector3.zero;
+            transform.LookAt(player.gameObject.transform);
+        }
+        else if(following && player.isMovingInZAxis)
+        {
+            transform.localPosition = new Vector3(0, 0, -0.3f);
+            transform.LookAt(player.gameObject.transform);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
