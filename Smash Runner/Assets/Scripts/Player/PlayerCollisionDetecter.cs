@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class PlayerCollisionDetecter : MonoBehaviour
 { 
+    private PlayerController controller;
+    public GameObject triggeredBooster;
+
     public bool isHitWall;
     public bool isPlayerTriggered=false;
-    public GameObject triggeredBooster;
-    PlayerController controller;
 
     private void Awake()
     {

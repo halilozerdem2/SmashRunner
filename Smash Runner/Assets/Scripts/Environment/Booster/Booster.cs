@@ -9,12 +9,12 @@ using UnityEngine;
 
 public class Booster : MonoBehaviour
 {
-    private Vector3 boosterPosition;
     private PlayerController player;
+    private GameManager gameManager;
+    
     public GameObject lastTarget;
     public BoxCollider boosterCollider;
 
-    private GameManager gameManager;
 
     public bool triggered=false;
     private bool following = false;
@@ -25,10 +25,7 @@ public class Booster : MonoBehaviour
         boosterCollider = GetComponent<BoxCollider>();
         gameManager = FindObjectOfType<GameManager>();
     }
-    private void Start()
-    {
-        boosterPosition = this.transform.position;
-    }
+
     private void Update()
     {
         lastTarget = gameManager.lastFollower;
@@ -44,15 +41,15 @@ public class Booster : MonoBehaviour
         }
         if(following)
         {
-            transform.localRotation = Quaternion.identity;
-            
-            if(!player.isMovingInZAxis)
+            if(!player.isMovingInYAxis)
             {
                 transform.localPosition = Vector3.MoveTowards(transform.localPosition,Vector3.zero,10f*Time.deltaTime);
+                transform.localRotation = Quaternion.identity;
             }
             else
             {
                 transform.localPosition = Vector3.Lerp(transform.localPosition,new Vector3(0, 0f,-0.4f), 10f*Time.deltaTime);
+                transform.LookAt(player.gameObject.transform);
             }
         }
      

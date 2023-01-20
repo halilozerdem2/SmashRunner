@@ -7,22 +7,22 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private Touch touch;
     private Rigidbody playerRb;
-    public bool isGrounded;
-    private float directingSpeedModifier;
-    private float threshold = 0.2f;
-    public bool isMovingInZAxis;
+    private Touch touch;
     private Vector3 playerPos;
+
+    public bool isGrounded;
+    public bool isMovingInYAxis;
+
+    [SerializeField] private float directingSpeed=0.5f;
+    [SerializeField] private float movingSpeed = 15f;
+    [SerializeField] private float threshold = 0.2f;
 
     private void Awake()
     {
         playerRb=GetComponent<Rigidbody>();    
     }
-    private void Start()
-    {
-        directingSpeedModifier = 0.5f;
-    }
+
     private void FixedUpdate()
     {
         playerPos= transform.position;
@@ -41,13 +41,13 @@ public class PlayerController : MonoBehaviour
     {
         float zAxisValue = playerRb.velocity.z;
         
-        if(Mathf.Abs(playerRb.velocity.z)>threshold)
+        if(Mathf.Abs(playerRb.velocity.y)>threshold)
         {
-            isMovingInZAxis= true;
+            isMovingInYAxis= true;
         }
         else
         {
-            isMovingInZAxis = false;
+            isMovingInYAxis = false;
         }
     }
 
@@ -57,13 +57,13 @@ public class PlayerController : MonoBehaviour
         if (touch.phase == TouchPhase.Moved)
         {
            transform.position = new Vector3(transform.position.x + touch.deltaPosition.x *
-                                            directingSpeedModifier * Time.deltaTime,
+                                            directingSpeed * Time.deltaTime,
                                             transform.position.y, transform.position.z);
         }
     }
     private void MoveForward()
     {
-        transform.position += new Vector3(0,0,15f*Time.deltaTime);
+        transform.position += new Vector3(0,0, movingSpeed * Time.deltaTime);
     }
     public Vector3 GetPlayerPosition()
     {
