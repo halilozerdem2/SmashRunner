@@ -13,6 +13,10 @@ public class PlayerCollisionDetecter : MonoBehaviour
     {
         controller= GetComponent<PlayerController>();
     }
+    private void Start()
+    {
+        triggeredBooster = this.gameObject;
+    }
     private void LateUpdate()
     {
         if (isPlayerTriggered)
@@ -33,7 +37,6 @@ public class PlayerCollisionDetecter : MonoBehaviour
         if(collision.gameObject.CompareTag("Ground"))
         {
             controller.isGrounded = true;
-
         }
     }
     private void OnCollisionExit(Collision collision)

@@ -2,6 +2,7 @@ using Newtonsoft.Json.Converters;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Networking.PlayerConnection;
 using UnityEditor.Rendering;
 using UnityEditor.UI;
 using UnityEngine;
@@ -32,23 +33,29 @@ public class Booster : MonoBehaviour
     {
         lastTarget = gameManager.lastFollower;
     }
+ 
     private void LateUpdate()
     {
         if (triggered)
         {
             transform.SetParent(lastTarget.transform);
+            transform.localScale =new Vector3(1.05f, 1.05f, 1f);
             triggered = false;
         }
-        if (following && !player.isMovingInZAxis)
+        if(following)
         {
-            transform.localPosition = Vector3.zero;
-            transform.LookAt(player.gameObject.transform);
+            transform.localRotation = Quaternion.identity;
+            
+            if(!player.isMovingInZAxis)
+            {
+                transform.localPosition = Vector3.MoveTowards(transform.localPosition,Vector3.zero,10f*Time.deltaTime);
+            }
+            else
+            {
+                transform.localPosition = Vector3.Lerp(transform.localPosition,new Vector3(0, 0f,-0.4f), 10f*Time.deltaTime);
+            }
         }
-        else if(following && player.isMovingInZAxis)
-        {
-            transform.localPosition = new Vector3(0, 0, -0.3f);
-            transform.LookAt(player.gameObject.transform);
-        }
+     
     }
 
     private void OnTriggerEnter(Collider other)

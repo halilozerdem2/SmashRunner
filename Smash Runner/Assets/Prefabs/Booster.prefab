@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 9768b6a52d340d042838f4def4f962d0,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9768b6a52d340d042838f4def4f962d0,
         type: 3}
@@ -31,17 +31,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 9768b6a52d340d042838f4def4f962d0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9768b6a52d340d042838f4def4f962d0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.777
+      value: 0.023000002
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9768b6a52d340d042838f4def4f962d0,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.98
+      value: -4.5199995
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9768b6a52d340d042838f4def4f962d0,
         type: 3}
@@ -51,7 +51,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 9768b6a52d340d042838f4def4f962d0,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9768b6a52d340d042838f4def4f962d0,
         type: 3}
@@ -82,11 +82,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 4a24f941fdc92a449874ed443b6a8dc9, type: 2}
+      objectReference: {fileID: 2100000, guid: c961b2585290a1c4a961229c899c48ec, type: 2}
     - target: {fileID: 919132149155446097, guid: 9768b6a52d340d042838f4def4f962d0,
         type: 3}
       propertyPath: m_Name
-      value: cubethollow
+      value: Booster (1)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 9768b6a52d340d042838f4def4f962d0,
         type: 3}
@@ -153,7 +153,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -173,7 +173,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3

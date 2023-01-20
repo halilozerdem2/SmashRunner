@@ -10,8 +10,8 @@ public class PlayerController : MonoBehaviour
     private Touch touch;
     private Rigidbody playerRb;
     public bool isGrounded;
-    private float speedModifier;
-    private float threshold = 0.5f;
+    private float directingSpeedModifier;
+    private float threshold = 0.2f;
     public bool isMovingInZAxis;
     private Vector3 playerPos;
 
@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     }
     private void Start()
     {
-        speedModifier= 0.01f;
+        directingSpeedModifier = 0.5f;
     }
     private void FixedUpdate()
     {
@@ -56,8 +56,8 @@ public class PlayerController : MonoBehaviour
         touch = Input.GetTouch(0);
         if (touch.phase == TouchPhase.Moved)
         {
-            transform.position = new Vector3(transform.position.x + touch.deltaPosition.x * 
-                                            speedModifier,
+           transform.position = new Vector3(transform.position.x + touch.deltaPosition.x *
+                                            directingSpeedModifier * Time.deltaTime,
                                             transform.position.y, transform.position.z);
         }
     }
