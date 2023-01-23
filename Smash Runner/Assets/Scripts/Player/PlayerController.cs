@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private float directingSpeed=0.5f;
     [SerializeField] private float movingSpeed = 15f;
-    [SerializeField] private float threshold = 0.2f;
+    [SerializeField] private float threshold = 0.1f;
 
     private void Awake()
     {
@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour
     }
     private void MoveForward()
     {
-        transform.position += new Vector3(0,0, movingSpeed * Time.deltaTime);
+        transform.position+=new Vector3(0, 0, movingSpeed * Time.deltaTime);
     }
     public Vector3 GetPlayerPosition()
     {

@@ -17,6 +17,7 @@ public class PlayerCollisionDetecter : MonoBehaviour
     private void Start()
     {
         triggeredBooster = this.gameObject;
+
     }
     private void LateUpdate()
     {
@@ -26,18 +27,23 @@ public class PlayerCollisionDetecter : MonoBehaviour
         }
     }
     private void OnTriggerEnter(Collider other)
-    {
+    {/*
         if (other.CompareTag("Booster"))
         {
             isPlayerTriggered= true;
             triggeredBooster = other.gameObject;
-        }
+       */
     }
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.CompareTag("Ground"))
         {
             controller.isGrounded = true;
+        }
+        if (collision.gameObject.CompareTag("Booster"))
+        {
+            isPlayerTriggered = true;
+            triggeredBooster = collision.gameObject;
         }
     }
     private void OnCollisionExit(Collision collision)

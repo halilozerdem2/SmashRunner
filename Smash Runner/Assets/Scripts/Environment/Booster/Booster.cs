@@ -11,12 +11,12 @@ public class Booster : MonoBehaviour
 {
     private PlayerController player;
     private GameManager gameManager;
-    
+
     public GameObject lastTarget;
     public BoxCollider boosterCollider;
 
 
-    public bool triggered=false;
+    public bool triggered = false;
     private bool following = false;
 
     private void Awake()
@@ -29,8 +29,21 @@ public class Booster : MonoBehaviour
     private void Update()
     {
         lastTarget = gameManager.lastFollower;
+        /*
+        if (Physics.Raycast(transform.position, lastTarget.transform.position - transform.position, out hit, 0.1f))
+        {
+            if (hit.collider != null)
+            {
+                if (hit.collider == lastTarget.gameObject)
+                {
+                    transform.SetParent(lastTarget.transform);
+                    transform.localScale = new Vector3(1.05f, 1.05f, 1f);
+
+                }
+            }
+        }*/
     }
- 
+
     private void LateUpdate()
     {
         if (triggered)
@@ -38,29 +51,41 @@ public class Booster : MonoBehaviour
             transform.SetParent(lastTarget.transform);
             transform.localScale =new Vector3(1.05f, 1.05f, 1f);
             triggered = false;
+            
         }
-        if(following)
+        if (following)
         {
-            if(!player.isMovingInYAxis)
+            if (!player.isMovingInYAxis)
             {
-                transform.localPosition = Vector3.MoveTowards(transform.localPosition,Vector3.zero,10f*Time.deltaTime);
+                transform.localPosition = Vector3.MoveTowards(transform.localPosition, Vector3.zero, 10f * Time.deltaTime);
                 transform.localRotation = Quaternion.identity;
             }
             else
             {
-                transform.localPosition = Vector3.Lerp(transform.localPosition,new Vector3(0, 0f,-0.4f), 10f*Time.deltaTime);
+                transform.localPosition = Vector3.Lerp(transform.localPosition, new Vector3(0, 0f, -0.4f), 10f * Time.deltaTime);
                 transform.LookAt(player.gameObject.transform);
             }
         }
-     
+
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            triggered= true;
+            following = true;
+            this.gameObject.GetComponent<BoxCollider>().isTrigger = true;
+        }
+        
+    }
+   
+   /* private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
-            triggered = true;
+            //triggered = true;
             following = true;
         }
-    }
+    }*/
 }
