@@ -17,7 +17,7 @@ public class Booster : MonoBehaviour
 
 
     public bool triggered = false;
-    private bool following = false;
+    public bool following = false;
 
     private void Awake()
     {

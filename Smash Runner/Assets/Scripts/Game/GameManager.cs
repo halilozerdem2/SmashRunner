@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public GameObject lastFollower;
 
     public List<GameObject> followerList; 
+    public int followerCount;
 
     private void Awake()
     {
@@ -21,6 +22,7 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
+        followerCount = followerList.Count;
         AssignLastFollower();
 
     }

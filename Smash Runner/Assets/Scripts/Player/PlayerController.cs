@@ -14,21 +14,21 @@ public class PlayerController : MonoBehaviour
     public bool isGrounded;
     public bool isMovingInYAxis;
 
-    [SerializeField] private float directingSpeed=0.5f;
+    [SerializeField] private float directingSpeed = 0.3f;
     [SerializeField] private float movingSpeed = 15f;
     [SerializeField] private float threshold = 0.1f;
 
     private void Awake()
     {
-        playerRb=GetComponent<Rigidbody>();    
+        playerRb = GetComponent<Rigidbody>();
     }
 
     private void FixedUpdate()
     {
-        playerPos= transform.position;
-        
+        playerPos = transform.position;
+
         MoveForward();
-        
+
         if (Input.touchCount > 0)
         {
             ControlCharacter();
@@ -40,10 +40,10 @@ public class PlayerController : MonoBehaviour
     private void SetBoolMovingZAxis()
     {
         float zAxisValue = playerRb.velocity.z;
-        
-        if(Mathf.Abs(playerRb.velocity.y)>threshold)
+
+        if (Mathf.Abs(playerRb.velocity.y) > threshold)
         {
-            isMovingInYAxis= true;
+            isMovingInYAxis = true;
         }
         else
         {
@@ -56,14 +56,15 @@ public class PlayerController : MonoBehaviour
         touch = Input.GetTouch(0);
         if (touch.phase == TouchPhase.Moved)
         {
-           transform.position = new Vector3(transform.position.x + touch.deltaPosition.x *
-                                            directingSpeed * Time.deltaTime,
-                                            transform.position.y, transform.position.z);
+            Vector3 movement = new Vector3(touch.deltaPosition.x * directingSpeed * Time.deltaTime, 0, 0);
+            playerRb.MovePosition(playerRb.position + movement);
         }
+
     }
     private void MoveForward()
     {
-        transform.position+=new Vector3(0, 0, movingSpeed * Time.deltaTime);
+        Vector3 movement = new Vector3(0, 0, movingSpeed * Time.deltaTime);
+        playerRb.MovePosition(transform.position + movement);
     }
     public Vector3 GetPlayerPosition()
     {

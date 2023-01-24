@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 9768b6a52d340d042838f4def4f962d0,
         type: 3}
       propertyPath: m_RootOrder
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9768b6a52d340d042838f4def4f962d0,
         type: 3}
@@ -36,12 +36,12 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 9768b6a52d340d042838f4def4f962d0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.023000002
+      value: -0.76
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9768b6a52d340d042838f4def4f962d0,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.5199995
+      value: 4.74
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9768b6a52d340d042838f4def4f962d0,
         type: 3}
@@ -86,7 +86,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 9768b6a52d340d042838f4def4f962d0,
         type: 3}
       propertyPath: m_Name
-      value: Booster (1)
+      value: Booster
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 9768b6a52d340d042838f4def4f962d0,
         type: 3}
@@ -100,15 +100,19 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9768b6a52d340d042838f4def4f962d0,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8641435622694234228}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9768b6a52d340d042838f4def4f962d0,
-        type: 3}
-      insertIndex: -1
       addedObject: {fileID: 5543330501012338897}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9768b6a52d340d042838f4def4f962d0,
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1931412903562543592}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9768b6a52d340d042838f4def4f962d0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8641435622694234228}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9768b6a52d340d042838f4def4f962d0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5238299231187598373}
   m_SourcePrefab: {fileID: 100100000, guid: 9768b6a52d340d042838f4def4f962d0, type: 3}
 --- !u!1 &170355543624576028 stripped
 GameObject:
@@ -116,21 +120,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1052805092082700621}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8641435622694234228
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 170355543624576028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1b19386708981c4abb7a5ee501a5b8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lastTarget: {fileID: 0}
-  boosterCollider: {fileID: 0}
-  triggered: 0
 --- !u!54 &5543330501012338897
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -156,8 +145,8 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Constraints: 126
+  m_CollisionDetection: 1
 --- !u!65 &1931412903562543592
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -173,9 +162,37 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1.00038, y: 1.00038, z: 1.0838275}
   m_Center: {x: 0, y: -0.000000059604645, z: 0.00000008940697}
+--- !u!114 &8641435622694234228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170355543624576028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1b19386708981c4abb7a5ee501a5b8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lastTarget: {fileID: 0}
+  boosterCollider: {fileID: 0}
+  triggered: 0
+  following: 0
+--- !u!114 &5238299231187598373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170355543624576028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12578b0c7197832419c6bb19734ef872, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
