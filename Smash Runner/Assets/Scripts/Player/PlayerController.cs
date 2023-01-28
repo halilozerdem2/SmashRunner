@@ -8,6 +8,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody playerRb;
+    PlayerCollisionDetecter detecter;
     private Touch touch;
     private Vector3 playerPos;
 
@@ -21,6 +22,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         playerRb = GetComponent<Rigidbody>();
+        detecter = GetComponent<PlayerCollisionDetecter>();
     }
 
     private void FixedUpdate()
@@ -63,13 +65,18 @@ public class PlayerController : MonoBehaviour
     }
     private void MoveForward()
     {
-        Vector3 movement = new Vector3(0, 0, movingSpeed * Time.deltaTime);
-        playerRb.MovePosition(transform.position + movement);
+        if (!detecter.isGameOver)
+        {
+            Vector3 movement = new Vector3(0, 0, movingSpeed * Time.deltaTime);
+
+            playerRb.MovePosition(transform.position + movement);
+        }
     }
     public Vector3 GetPlayerPosition()
     {
         return playerPos;
     }
+
 
 
 }

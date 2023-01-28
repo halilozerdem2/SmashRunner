@@ -5,15 +5,30 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     PlayerController player;
+    PlayerCollisionDetecter detecter;
+    [SerializeField] Camera mainCam;
 
     private void Awake()
     {
-        player=FindObjectOfType<PlayerController>();
+        player = FindObjectOfType<PlayerController>();
+        detecter= FindObjectOfType<PlayerCollisionDetecter>();
+    }
+    private void Start()
+    {
     }
     private void LateUpdate()
     {
-        this.transform.position = player.GetPlayerPosition() + new Vector3(0,7,-10);
-        
+        if (!detecter.isGameOver)
+        {
+            this.transform.position = player.GetPlayerPosition() + new Vector3(0, 5f, -5f);
+
+        }
+        else
+        {
+            this.transform.position = Vector3.Lerp(transform.position,player.GetPlayerPosition()+ new Vector3(0, 15f, -11f), 4f*Time.deltaTime);
+            mainCam.fieldOfView = 50f;
+        }
+
     }
     private void Update()
     {

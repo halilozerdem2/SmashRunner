@@ -11,10 +11,13 @@ public class Booster : MonoBehaviour
 {
     private PlayerController player;
     private GameManager gameManager;
+    private Wall wall;
 
     public GameObject lastTarget;
     public BoxCollider boosterCollider;
 
+    private int collidedBoosterIndex;
+    
 
     public bool triggered = false;
     public bool following = false;
@@ -24,24 +27,12 @@ public class Booster : MonoBehaviour
         player = FindObjectOfType<PlayerController>();
         boosterCollider = GetComponent<BoxCollider>();
         gameManager = FindObjectOfType<GameManager>();
+        wall=FindObjectOfType<Wall>();
     }
 
     private void Update()
     {
         lastTarget = gameManager.lastFollower;
-        /*
-        if (Physics.Raycast(transform.position, lastTarget.transform.position - transform.position, out hit, 0.1f))
-        {
-            if (hit.collider != null)
-            {
-                if (hit.collider == lastTarget.gameObject)
-                {
-                    transform.SetParent(lastTarget.transform);
-                    transform.localScale = new Vector3(1.05f, 1.05f, 1f);
-
-                }
-            }
-        }*/
     }
 
     private void LateUpdate()
@@ -49,7 +40,7 @@ public class Booster : MonoBehaviour
         if (triggered)
         {
             transform.SetParent(lastTarget.transform);
-            transform.localScale =new Vector3(1.05f, 1.05f, 1f);
+            transform.localScale =new Vector3(1.02f, 1.02f, 1f);
             triggered = false;
             
         }
@@ -76,16 +67,6 @@ public class Booster : MonoBehaviour
             triggered= true;
             following = true;
             this.gameObject.GetComponent<BoxCollider>().isTrigger = true;
-        }
-        
+        }   
     }
-   
-   /* private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-            //triggered = true;
-            following = true;
-        }
-    }*/
 }

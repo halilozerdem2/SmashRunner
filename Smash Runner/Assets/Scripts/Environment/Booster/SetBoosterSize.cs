@@ -35,7 +35,7 @@ public class SetBoosterSize : MonoBehaviour
             if (playerCollisionDetecter.isPlayerTriggered)
             {
                 transform.position = new Vector3(transform.position.x,
-                    transform.position.y+0.025f,
+                    transform.position.y+manager.followerCount*0.0028f,
                     transform.position.z);
             }
         }
