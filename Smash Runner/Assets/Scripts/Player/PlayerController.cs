@@ -52,15 +52,18 @@ public class PlayerController : MonoBehaviour
         {
             joystick.gameObject.SetActive(true);
 
-            if(joystick.Horizontal!=0 ||joystick.Vertical!=0)
+            if (joystick.Horizontal != 0 || joystick.Vertical != 0)
             {
-                playerRb.velocity = new Vector3(joystick.Horizontal * stageOverSpeed,
-                            playerRb.velocity.y, joystick.Vertical * stageOverSpeed);
-
+                playerRb.velocity = new Vector3(joystick.Horizontal * stageOverSpeed*Time.deltaTime,
+                                    0, joystick.Vertical * stageOverSpeed*Time.deltaTime);
                 transform.rotation = Quaternion.LookRotation(playerRb.velocity);
             }
-            
-            
+            else
+            {
+                playerRb.velocity = new Vector3(0, playerRb.velocity.y, 0);
+            }
+
+
         }
     
 

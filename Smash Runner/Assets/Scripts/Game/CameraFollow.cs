@@ -26,7 +26,7 @@ public class CameraFollow : MonoBehaviour
         else
         {
             this.transform.position = Vector3.Lerp(transform.position,player.GetPlayerPosition()+ new Vector3(0, 15f, -11f), 4f*Time.deltaTime);
-            mainCam.fieldOfView = 50f;
+            mainCam.fieldOfView = 45f;
         }
 
     }

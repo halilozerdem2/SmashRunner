@@ -50,10 +50,11 @@ public class PlayerCollisionDetecter : MonoBehaviour
             isPlayerTriggered = true;
             triggeredBooster = collision.gameObject;
         }
-        if (collision.gameObject.CompareTag("Wall"))
+        if (collision.gameObject.CompareTag("Wall")|| collision.gameObject.CompareTag("Block"))
         {
             isDamaged=true;
         }
+
 
     }
     private void OnCollisionExit(Collision collision)
