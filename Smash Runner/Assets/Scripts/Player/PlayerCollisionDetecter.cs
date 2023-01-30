@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerCollisionDetecter : MonoBehaviour
 {
     private PlayerController controller;
-    private DamageDealer damageDealer;
     public GameObject triggeredBooster;
 
     public bool isDamaged;
@@ -17,7 +16,6 @@ public class PlayerCollisionDetecter : MonoBehaviour
     private void Awake()
     {
         controller = GetComponent<PlayerController>();
-        damageDealer= GetComponent<DamageDealer>();
     }
     private void Start()
     {
@@ -57,5 +55,12 @@ public class PlayerCollisionDetecter : MonoBehaviour
             isDamaged=true;
         }
 
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Ground2"))
+        {
+            isStageOver = false;
+        }
     }
 }

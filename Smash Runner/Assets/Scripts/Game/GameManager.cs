@@ -1,7 +1,12 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
+using System;
+using UnityEditor;
 using UnityEngine.SceneManagement;
+using System.Xml.Serialization;
 
 public class GameManager : MonoBehaviour
 {
@@ -20,12 +25,12 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
+        DontDestroyOnLoad(gameObject);
         followerList.Add(collisionDetecter.gameObject);
         lastFollower = collisionDetecter.gameObject;
     }
     private void Update()
     {
-
         followerCount = followerList.Count;
         counterText.text = (followerCount - 1).ToString();
         AssignLastFollower();
