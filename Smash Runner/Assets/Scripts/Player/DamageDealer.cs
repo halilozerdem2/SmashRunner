@@ -13,8 +13,14 @@ public class DamageDealer : MonoBehaviour
         manager = FindObjectOfType<GameManager>();
     }
 
-
-    public void Damaged()
+    private void Update()
+    {
+        if(detecter.isDamaged)
+        {
+            Damage();
+        }
+    }
+    public void Damage()
     {
         if (manager.followerCount > 1)
         {
@@ -35,12 +41,12 @@ public class DamageDealer : MonoBehaviour
             }
             else
             {
-                Destroy(this.gameObject);
+                //Destroy(this.gameObject);
             }
         }
         else
         {
-            Destroy(this.gameObject);
+            //Destroy(this.gameObject);
         }
     }
 

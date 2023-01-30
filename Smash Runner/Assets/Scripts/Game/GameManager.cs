@@ -5,22 +5,23 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 using UnityEditor;
+using UnityEngine.SceneManagement;
+using System.Xml.Serialization;
 
 public class GameManager : MonoBehaviour
 {
     private PlayerCollisionDetecter collisionDetecter;
-    private Wall wall;
     public GameObject lastFollower;
 
     public List<GameObject> followerList;
     public TextMeshPro counterText;
     public int followerCount;
+    public bool isGameOver;
 
     private void Awake()
     {
         followerList = new List<GameObject>();
         collisionDetecter = FindObjectOfType<PlayerCollisionDetecter>();
-        wall = FindObjectOfType<Wall>();
     }
     private void Start()
     {
@@ -29,9 +30,28 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
+
         followerCount = followerList.Count;
         counterText.text = (followerCount - 1).ToString();
         AssignLastFollower();
+        GameOver();
+    }
+
+    private void GameOver()
+    {
+        if (followerCount==1 && collisionDetecter.isDamaged)
+        {
+            isGameOver = true;
+        }
+        else
+        {
+            isGameOver = false;
+        }
+
+        if(isGameOver)
+        {
+            LoadTheScene("GameOver");
+        }
     }
 
     private void AssignLastFollower()
@@ -41,5 +61,14 @@ public class GameManager : MonoBehaviour
             followerList.Add(collisionDetecter.triggeredBooster);
         }
         lastFollower = followerList[followerList.Count - 1];
+    }
+
+   
+    private void LoadTheScene(string aSceneName)
+    {
+        if(SceneManager.GetActiveScene().name!=aSceneName)
+        {
+            SceneManager.LoadScene(aSceneName);
+        }
     }
 }

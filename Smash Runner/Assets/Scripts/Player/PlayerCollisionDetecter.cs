@@ -30,6 +30,10 @@ public class PlayerCollisionDetecter : MonoBehaviour
         {
             isPlayerTriggered = false;
         }
+        if(isDamaged) 
+        {
+            isDamaged = false;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -50,7 +54,7 @@ public class PlayerCollisionDetecter : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Wall"))
         {
-            damageDealer.Damaged();
+            isDamaged=true;
         }
 
     }
