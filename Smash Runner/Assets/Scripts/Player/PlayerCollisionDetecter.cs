@@ -9,7 +9,7 @@ public class PlayerCollisionDetecter : MonoBehaviour
     public GameObject triggeredBooster;
 
     public bool isDamaged;
-    public bool isGameOver;
+    public bool isStageOver;
     public bool isPlayerTriggered = false;
 
     public int boosterCounter;
@@ -44,7 +44,7 @@ public class PlayerCollisionDetecter : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Ground2"))
         {
-            isGameOver = true;
+            isStageOver = true;
         }
         if (collision.gameObject.CompareTag("Booster"))
         {

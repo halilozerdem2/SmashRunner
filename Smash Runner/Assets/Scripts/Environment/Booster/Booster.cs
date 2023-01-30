@@ -1,23 +1,12 @@
-using Newtonsoft.Json.Converters;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Networking.PlayerConnection;
-using UnityEditor.Rendering;
-using UnityEditor.UI;
 using UnityEngine;
 
 public class Booster : MonoBehaviour
 {
     private PlayerController player;
     private GameManager gameManager;
-    private Wall wall;
 
     public GameObject lastTarget;
     public BoxCollider boosterCollider;
-
-    private int collidedBoosterIndex;
-    
 
     public bool triggered = false;
     public bool following = false;
@@ -26,8 +15,6 @@ public class Booster : MonoBehaviour
     {
         player = FindObjectOfType<PlayerController>();
         boosterCollider = GetComponent<BoxCollider>();
-        gameManager = FindObjectOfType<GameManager>();
-        wall=FindObjectOfType<Wall>();
     }
 
     private void Update()

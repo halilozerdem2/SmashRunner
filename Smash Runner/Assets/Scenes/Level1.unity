@@ -7305,6 +7305,7 @@ MonoBehaviour:
   followerList: []
   counterText: {fileID: 307515421}
   followerCount: 0
+  isGameOver: 0
 --- !u!4 &1016120582
 Transform:
   m_ObjectHideFlags: 0

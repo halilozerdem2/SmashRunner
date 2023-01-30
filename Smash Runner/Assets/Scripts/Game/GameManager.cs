@@ -1,12 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
-using System;
-using UnityEditor;
 using UnityEngine.SceneManagement;
-using System.Xml.Serialization;
 
 public class GameManager : MonoBehaviour
 {

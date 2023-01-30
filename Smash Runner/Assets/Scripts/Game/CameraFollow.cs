@@ -18,7 +18,7 @@ public class CameraFollow : MonoBehaviour
     }
     private void LateUpdate()
     {
-        if (!detecter.isGameOver)
+        if (!detecter.isStageOver)
         {
             this.transform.position = player.GetPlayerPosition() + new Vector3(0, 5f, -5f);
 

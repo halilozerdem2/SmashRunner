@@ -1,14 +1,10 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using UnityEditor;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody playerRb;
-    PlayerCollisionDetecter detecter;
+    private PlayerCollisionDetecter detecter;
+
     private Touch touch;
     private Vector3 playerPos;
 
@@ -17,7 +13,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private float directingSpeed = 0.3f;
     [SerializeField] private float movingSpeed = 15f;
-    [SerializeField] private float threshold = 0.1f;
+    [SerializeField] private float threshold = 0.3f;
 
     private void Awake()
     {
@@ -29,7 +25,14 @@ public class PlayerController : MonoBehaviour
     {
         playerPos = transform.position;
 
-        MoveForward();
+        if (!detecter.isStageOver)
+        {
+            MoveForward();
+        }
+        else
+        {
+
+        }
 
         if (Input.touchCount > 0)
         {
@@ -65,13 +68,10 @@ public class PlayerController : MonoBehaviour
     }
     private void MoveForward()
     {
-        if (!detecter.isGameOver)
-        {
-            Vector3 movement = new Vector3(0, 0, movingSpeed * Time.deltaTime);
-
-            playerRb.MovePosition(transform.position + movement);
-        }
+        Vector3 movement = new Vector3(0, 0, movingSpeed * Time.deltaTime);
+        playerRb.MovePosition(transform.position + movement);
     }
+
     public Vector3 GetPlayerPosition()
     {
         return playerPos;
