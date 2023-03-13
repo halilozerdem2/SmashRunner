@@ -28,7 +28,7 @@ public class PlayerCollisionDetecter : MonoBehaviour
         {
             isPlayerTriggered = false;
         }
-        if(isDamaged) 
+        if(isDamaged)
         {
             isDamaged = false;
         }

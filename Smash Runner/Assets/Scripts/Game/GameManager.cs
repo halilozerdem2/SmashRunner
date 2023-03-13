@@ -31,27 +31,29 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        followerCount = followerList.Count;
-        counterText.text = (followerCount - 1).ToString();
-        AssignLastFollower();
-        GameOver();
+        if (collisionDetecter != null)
+        {
+            followerCount = followerList.Count;
+            counterText.text = (followerCount - 1).ToString();
+            AssignLastFollower();
+            
+            if(followerCount==1 && collisionDetecter.isDamaged)
+            {
+                isGameOver= true;
+                GameOver();
+            }
+        }
     }
 
     private void GameOver()
     {
-        if (followerCount==1 && collisionDetecter.isDamaged)
-        {
-            isGameOver = true;
-        }
-        else
-        {
-            isGameOver = false;
-        }
+        followerList.Clear();
+        //followerList.Add(collisionDetecter.gameObject);
+        lastFollower= null;
+        counterText.text = null;
+        LoadTheScene("GameOver");
+        isGameOver=false;
 
-        if(isGameOver)
-        {
-            LoadTheScene("GameOver");
-        }
     }
 
     private void AssignLastFollower()
@@ -63,10 +65,10 @@ public class GameManager : MonoBehaviour
         lastFollower = followerList[followerList.Count - 1];
     }
 
-   
+
     private void LoadTheScene(string aSceneName)
     {
-        if(SceneManager.GetActiveScene().name!=aSceneName)
+        if (SceneManager.GetActiveScene().name != aSceneName)
         {
             SceneManager.LoadScene(aSceneName);
         }
